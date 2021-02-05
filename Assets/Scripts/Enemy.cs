@@ -84,6 +84,7 @@ public class Enemy : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log($"Enemy is now at {EnemyX}, {EnemyY} on the grid");
         world.map[EnemyX, EnemyY].Add(gameObject);
         if (direction != Direction.NONE)
         {

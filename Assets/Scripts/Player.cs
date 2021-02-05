@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
                 }
                 break;
         }
-        //Debug.Log($"Player is now at {PlayerX}, {PlayerY} on the grid");
+        Debug.Log($"Player is now at {PlayerX}, {PlayerY} on the grid");
         world.map[PlayerX, PlayerY].Add(gameObject);
         if (isValidSignal)
         {
