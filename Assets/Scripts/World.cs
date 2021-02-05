@@ -9,6 +9,10 @@ public class World : MonoBehaviour
     public List<GameObject>[,] map = new List<GameObject>[20, 20];
 
     public GameObject player;
+    public Enemy enemy;
+
+    private float timeElapsed;
+    private List<Enemy> enemies = new List<Enemy>();
 
     private void Start()
     {
@@ -20,5 +24,25 @@ public class World : MonoBehaviour
             }
         }
         map[10, 10].Add(player);
+    }
+
+    private bool spawned = false;
+    private void Update()
+    {
+        timeElapsed += Time.deltaTime;
+
+        // TESTING PURPOSES: spawn an enemy at the 3 second mark at (13, 13) on the grid;
+        if (!spawned && timeElapsed > 3f)
+        {
+            Enemy enemyInstance = Instantiate(enemy);
+            enemyInstance.GetComponent<Enemy>().SpawnAt(this, 13, 13);
+            enemies.Add(enemyInstance);
+            spawned = true;
+        }
+    }
+
+    public List<Enemy> GetEnemies()
+    {
+        return enemies;
     }
 }

@@ -334,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 310801148}
+  enemy: {fileID: 5560973539363069866, guid: 8c8056c8911fa3f40961c13f7f7d7350, type: 3}
 --- !u!4 &568739438
 Transform:
   m_ObjectHideFlags: 0
@@ -487,6 +488,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputCooldown: 0.5
   player: {fileID: 310801149}
+  world: {fileID: 568739437}
 --- !u!4 &1423517257
 Transform:
   m_ObjectHideFlags: 0

@@ -33,41 +33,14 @@ public class Player : MonoBehaviour
     {
         if (isMoving)
         {
-            if (elapsedMoveTime > moveDurationSecs)
+            // move the unit
+            bool isDoneMoving = Utils.MoveHelper(elapsedMoveTime, moveDurationSecs, gameObject, PlayerX, PlayerY, currentMovement, oldPlayerX, oldPlayerY);
+            if (isDoneMoving)
             {
-                transform.position = new Vector3(
-                    0.5f - 10 + PlayerX, 0.5f + 10 - PlayerY, transform.position.z);
                 isMoving = false;
-            } else
+            }
+            else
             {
-                float displacement = elapsedMoveTime / moveDurationSecs;
-                switch (currentMovement)
-                {
-                    case Direction.UP:
-                        transform.position = new Vector3(
-                            transform.position.x,
-                            oldPlayerY + displacement,
-                            transform.position.z);
-                        break;
-                    case Direction.DOWN:
-                        transform.position = new Vector3(
-                            transform.position.x,
-                            oldPlayerY - displacement,
-                            transform.position.z);
-                        break;
-                    case Direction.LEFT:
-                        transform.position = new Vector3(
-                            oldPlayerX - displacement,
-                            transform.position.y,
-                            transform.position.z);
-                        break;
-                    case Direction.RIGHT:
-                        transform.position = new Vector3(
-                            oldPlayerX + displacement,
-                            transform.position.y,
-                            transform.position.z);
-                        break;
-                }
                 elapsedMoveTime += Time.deltaTime;
             }
         }
@@ -90,7 +63,7 @@ public class Player : MonoBehaviour
                 }
                 break;
             case Direction.DOWN:
-                if (PlayerY < Constants.GRID_HEIGHT - 1)
+                if (PlayerY < Utils.GRID_HEIGHT - 1)
                 {
                     PlayerY++;
                     isValidSignal = true;
@@ -104,14 +77,14 @@ public class Player : MonoBehaviour
                 }
                 break;
             case Direction.RIGHT:
-                if (PlayerX < Constants.GRID_WIDTH - 1)
+                if (PlayerX < Utils.GRID_WIDTH - 1)
                 {
                     PlayerX++;
                     isValidSignal = true;
                 }
                 break;
         }
-        Debug.Log($"Player is now at {PlayerX}, {PlayerY} on the grid");
+        //Debug.Log($"Player is now at {PlayerX}, {PlayerY} on the grid");
         world.map[PlayerX, PlayerY].Add(gameObject);
         if (isValidSignal)
         {
