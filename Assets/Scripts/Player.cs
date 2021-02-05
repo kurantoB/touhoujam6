@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
 
     public float moveDurationSecs;
     public GameObject camera;
+    public World world;
 
     private Direction currentMovement;
     private bool isMoving = false;
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
     {
         bool isValidSignal = false;
 
+        world.map[PlayerX, PlayerY].Remove(gameObject);
         // receive the move signal
         switch (direction)
         {
@@ -107,6 +109,8 @@ public class Player : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log($"Player is now at {PlayerX}, {PlayerY} on the grid");
+        world.map[PlayerX, PlayerY].Add(gameObject);
         if (isValidSignal)
         {
             currentMovement = direction;

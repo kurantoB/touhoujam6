@@ -155,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDurationSecs: 0.33
   camera: {fileID: 540814348}
+  world: {fileID: 568739437}
 --- !u!212 &310801150
 SpriteRenderer:
   m_ObjectHideFlags: 0
