@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
         {
             if (elapsedMoveTime > moveDurationSecs)
             {
+                transform.position = new Vector3(
+                    0.5f - 10 + PlayerX, 0.5f + 10 - PlayerY, transform.position.z);
                 isMoving = false;
             } else
             {
